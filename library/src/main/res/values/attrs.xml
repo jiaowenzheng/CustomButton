@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="customButton">
+        <attr name="normalSolid" format="color" />
+        <attr name="pressedSolid" format="color" />
+        <attr name="stroke" format="color" />
+        <attr name="normalStroke" format="color" />
+        <attr name="pressedStroke" format="color" />
+        <attr name="roundButtonRadius" format="integer" />
+        <attr name="roundButtonLeftTopRadius" format="integer" />
+        <attr name="roundButtonLeftBottomRadius" format="integer" />
+        <attr name="roundButtonRightTopRadius" format="integer" />
+        <attr name="roundButtonRightBottomRadius" format="integer" />
+        <attr name="normalDrawable" format="reference" />
+        <attr name="pressedDrawable" format="reference" />
+        <attr name="isSelected" format="boolean" />
+        <attr name="normalTextColor" format="color" />
+        <attr name="selectedTextColor" format="color" />
+        <attr name="strokeWidth" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="customTextView">
+        <attr name="textSolid" format="color" />
+        <attr name="textStroke" format="color" />
+        <attr name="textRadius" format="dimension" />
+        <attr name="textLeftTopRadius" format="dimension" />
+        <attr name="textLeftBottomRadius" format="dimension" />
+        <attr name="textRightTopRadius" format="dimension" />
+        <attr name="textRightBottomRadius" format="dimension" />
+        <attr name="textStrokeWidth" format="integer" />
+        <attr name="textDrawable" format="reference" />
+        <attr name="textNormalTextColor" format="color" />
+        <attr name="textSelectedTextColor" format="color" />
+    </declare-styleable>
+
+</resources>
