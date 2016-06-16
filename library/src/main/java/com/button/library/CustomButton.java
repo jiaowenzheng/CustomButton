@@ -135,8 +135,8 @@ public class CustomButton extends Button {
     /**
      * 设置Button背景
      *
-     * @param normalSolid         正常状态背景填充
-     * @param pressedSolid        按下状态背景填充
+     * @param normalSolid         正常状态背景填充颜色
+     * @param pressedSolid        按下状态背景填充颜色
      * @param normalStroke        正常状态边框颜色填充
      * @param pressedStroke       按下状态边框颜色填充
      * @param roundButtonRadius   圆角弧度
@@ -185,8 +185,8 @@ public class CustomButton extends Button {
     /**
      * 设置Button背景
      *
-     * @param normalSolid         正常状态背景填充
-     * @param pressedSolid        按下状态背景填充
+     * @param normalSolid         正常状态背景填充颜色
+     * @param pressedSolid        按下状态背景填充颜色
      * @param stroke              边框
      * @param roundButtonRadius   圆角弧度
      * @param isEnableSelected    是否打开选中状态
@@ -232,8 +232,8 @@ public class CustomButton extends Button {
     /**
      * 设置Button背景
      *
-     * @param normalSolid         正常状态背景填充
-     * @param pressedSolid        按下状态背景填充
+     * @param normalSolid         正常状态背景填充颜色
+     * @param pressedSolid        按下状态背景填充颜色
      * @param roundButtonRadius   圆角弧度
      * @param isEnableSelected    是否打开选中状态
      */
