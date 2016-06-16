@@ -3,7 +3,7 @@
 
 #### 效果如下
 
-<img src="https://github.com/jiaowenzheng/CustomButton/raw/master/pic.png" width="400" height="800"/>  
+<img src="https://github.com/jiaowenzheng/CustomButton/raw/master/pic.png" width="450" height="800"/>  
 
 <br/>
 ## 属性
