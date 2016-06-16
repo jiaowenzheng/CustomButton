@@ -27,6 +27,8 @@
         
 ## 示例
 
+ * xml中设置
+       
         xmlns:app="http://schemas.android.com/apk/res-auto"
         
         <com.button.library.CustomButton
@@ -41,7 +43,7 @@
                app:roundButtonRadius="@dimen/radius_45"
                app:selectedTextColor="@color/color_ffffff" />
                
-    代码中设置方法：
+ * 代码中设置方法：
     
         /**
          * 设置Button背景
