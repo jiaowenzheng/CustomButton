@@ -1,7 +1,7 @@
 # CustomButton
 支持圆角、背景颜色按下状态、背景图片按下状态、文字按下状态、选中状态、边框颜色及按下状态<br/>
 
-#### 效果如下
+## 效果
 
 <img src="https://github.com/jiaowenzheng/CustomButton/raw/master/pic.png" width="450" height="800"/>  
 
