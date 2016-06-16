@@ -6,17 +6,17 @@
         <attr name="stroke" format="color" />
         <attr name="normalStroke" format="color" />
         <attr name="pressedStroke" format="color" />
-        <attr name="roundButtonRadius" format="integer" />
-        <attr name="roundButtonLeftTopRadius" format="integer" />
-        <attr name="roundButtonLeftBottomRadius" format="integer" />
-        <attr name="roundButtonRightTopRadius" format="integer" />
-        <attr name="roundButtonRightBottomRadius" format="integer" />
+        <attr name="roundButtonRadius" format="dimension" />
+        <attr name="roundButtonLeftTopRadius" format="dimension" />
+        <attr name="roundButtonLeftBottomRadius" format="dimension" />
+        <attr name="roundButtonRightTopRadius" format="dimension" />
+        <attr name="roundButtonRightBottomRadius" format="dimension" />
         <attr name="normalDrawable" format="reference" />
         <attr name="pressedDrawable" format="reference" />
         <attr name="isSelected" format="boolean" />
         <attr name="normalTextColor" format="color" />
         <attr name="selectedTextColor" format="color" />
-        <attr name="strokeWidth" format="integer" />
+        <attr name="strokeWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="customTextView">

@@ -1,16 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jiao.button.MainActivity">
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!--<attr name="normalSolid" format="color" />-->
+    <!--<attr name="pressedSolid" format="color" />-->
+    <!--<attr name="stroke" format="color" />-->
+    <!--<attr name="normalStroke" format="color" />-->
+    <!--<attr name="pressedStroke" format="color" />-->
+    <!--<attr name="roundButtonRadius" format="integer" />-->
+    <!--<attr name="roundButtonLeftTopRadius" format="integer" />-->
+    <!--<attr name="roundButtonLeftBottomRadius" format="integer" />-->
+    <!--<attr name="roundButtonRightTopRadius" format="integer" />-->
+    <!--<attr name="roundButtonRightBottomRadius" format="integer" />-->
+    <!--<attr name="normalDrawable" format="reference" />-->
+    <!--<attr name="pressedDrawable" format="reference" />-->
+    <!--<attr name="isSelected" format="boolean" />-->
+    <!--<attr name="normalTextColor" format="color" />-->
+    <!--<attr name="selectedTextColor" format="color" />-->
+    <!--<attr name="strokeWidth" format="integer" />-->
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:fillViewport="true"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="圆角Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_3f51b5"
+                app:roundButtonRadius="@dimen/radius_10" />
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="左边45弧度圆角Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_3f51b5"
+                app:roundButtonLeftBottomRadius="@dimen/radius_45"
+                app:roundButtonLeftTopRadius="@dimen/radius_45" />
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="45弧度圆角Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_3f51b5"
+                app:roundButtonRadius="@dimen/radius_45" />
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="45圆角边框Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_3f51b5"
+                app:normalStroke="@color/color_ff4081"
+                app:roundButtonRadius="@dimen/radius_45"
+                app:strokeWidth="2dp" />
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="45弧度圆角按下效果变色边框Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_ff0000"
+                app:normalStroke="@color/color_303f9f"
+                app:pressedSolid="@color/color_00ff00"
+                app:pressedStroke="@color/color_ff4081"
+                app:roundButtonRadius="@dimen/radius_45"
+                app:strokeWidth="2dp" />
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="45弧度圆角按下效果Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_ff0000"
+                app:pressedSolid="@color/color_00ff00"
+                app:roundButtonRadius="@dimen/radius_45" />
+
+            <com.button.library.CustomButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="45弧度圆角按下效果文字变色Button"
+                android:textColor="@color/color_ffffff"
+                app:normalSolid="@color/color_ff0000"
+                app:normalTextColor="@color/color_3f51b5"
+                app:pressedSolid="@color/color_00ff00"
+                app:roundButtonRadius="@dimen/radius_45"
+                app:selectedTextColor="@color/color_ffffff" />
+
+            <com.button.library.CustomButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_ffffff"
+                app:normalDrawable="@drawable/call_accept_icon"
+                app:pressedDrawable="@drawable/call_refuse_icon" />
+
+            <com.button.library.CustomButton
+                android:id="@+id/selected_btn"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/color_ffffff"
+                app:isSelected="true"
+                app:normalDrawable="@drawable/call_accept_icon"
+                app:pressedDrawable="@drawable/call_refuse_icon" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
