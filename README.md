@@ -7,24 +7,36 @@
 <img src="https://github.com/jiaowenzheng/CustomButton/raw/master/pic.png" width="450" height="800"/>  
 
 <br/>
+
+## 更新
+ 
+ * 新增 noLeftStroke、noTopStroke、noRightStroke、noBottomStroke 四个属性.
+ * 重新命名四个属性 normalSolidColor、pressedSolidColor、normalStrokeColor、pressedStrokeColor、roundLeftTopRadius、roundLeftBottomRadius、roundRightTopRadius、roundRightBottomRadius.
+ * 增加一个实现导航标签事例 用xml实现.
+
 ## 属性
 
-        normalSolid                                    正常状态背景填充颜色
-        pressedSolid                                   按下状态背景填充颜色
-        stroke                                         边框颜色
-        normalStroke                                   边框正常状态填充颜色
-        pressedStroke                                  边框按下状态填充姿色
-        roundButtonRadius                              button四个角弧度
-        roundButtonLeftTopRadius                       button左上角弧度
-        roundButtonLeftBottomRadius                    button左下角弧度
-        roundButtonRightTopRadius                      button右上角弧度
-        roundButtonRightBottomRadius                   button右下角弧度
+        normalSolidColor                               正常状态背景填充颜色
+        pressedSolidColor                              按下状态背景填充颜色
+        strokeColor                                    边框颜色
+        normalStrokeColor                              边框正常状态填充颜色
+        pressedStrokeColor                             边框按下状态填充姿色
+        roundRadius                                    button四个角弧度
+        roundLeftTopRadius                             button左上角弧度
+        roundLeftBottomRadius                          button左下角弧度
+        roundRightTopRadius                            button右上角弧度
+        roundRightBottomRadius                         button右下角弧度
         normalDrawable                                 正常状态背景图片
         pressedDrawable                                按下状态背景图片
         isSelected                                     是否支持button选中状态 与setSelected()配合使用
         normalTextColor                                正常状态文字的颜色
         selectedTextColor                              选中状态下文字的颜色
         strokeWidth                                    边框的宽度
+        noLeftStroke                                   无左描边线
+        noRightStroke                                  无右描边线
+        noTopStroke                                    无上描边线
+        noBottomStroke                                 无下搭边线
+        
         
 ## 示例
 

@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="customButton">
-        <attr name="normalSolid" format="color" />
-        <attr name="pressedSolid" format="color" />
-        <attr name="stroke" format="color" />
-        <attr name="normalStroke" format="color" />
-        <attr name="pressedStroke" format="color" />
-        <attr name="roundButtonRadius" format="dimension" />
-        <attr name="roundButtonLeftTopRadius" format="dimension" />
-        <attr name="roundButtonLeftBottomRadius" format="dimension" />
-        <attr name="roundButtonRightTopRadius" format="dimension" />
-        <attr name="roundButtonRightBottomRadius" format="dimension" />
+        <attr name="normalSolidColor" format="color" />
+        <attr name="pressedSolidColor" format="color" />
+        <attr name="strokeColor" format="color" />
+        <attr name="normalStrokeColor" format="color" />
+        <attr name="pressedStrokeColor" format="color" />
+        <attr name="roundRadius" format="dimension" />
+        <attr name="roundLeftTopRadius" format="dimension" />
+        <attr name="roundLeftBottomRadius" format="dimension" />
+        <attr name="roundRightTopRadius" format="dimension" />
+        <attr name="roundRightBottomRadius" format="dimension" />
         <attr name="normalDrawable" format="reference" />
         <attr name="pressedDrawable" format="reference" />
         <attr name="isSelected" format="boolean" />
         <attr name="normalTextColor" format="color" />
         <attr name="selectedTextColor" format="color" />
         <attr name="strokeWidth" format="dimension" />
+        <attr name="noLeftStroke" format="boolean"/>
+        <attr name="noRightStroke" format="boolean"/>
+        <attr name="noTopStroke" format="boolean"/>
+        <attr name="noBottomStroke" format="boolean"/>
     </declare-styleable>
 
 </resources>

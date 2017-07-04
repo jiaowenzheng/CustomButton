@@ -8,4 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="custom_button_font_setting_style">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="normalSolidColor">@color/color_ffffff</item>
+        <item name="pressedSolidColor">@color/color_464646</item>
+        <item name="normalTextColor">@color/color_464646</item>
+        <item name="selectedTextColor">@color/color_ffffff</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/color_464646</item>
+        <item name="isSelected">true</item>
+    </style>
+
+
+    <style name="xml_font_setting_style">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:textColor">@color/selector_text_color</item>-->
+    </style>
 </resources>

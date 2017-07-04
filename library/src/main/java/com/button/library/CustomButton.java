@@ -6,9 +6,13 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.Button;
+
+import static android.R.attr.left;
 
 
 /**
@@ -42,25 +46,28 @@ public class CustomButton extends Button {
 
         if (!isInEditMode()) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.customButton);
-            int normalSolid = a.getColor(R.styleable.customButton_normalSolid, Color.TRANSPARENT);
-            int pressedSolid = a.getColor(R.styleable.customButton_pressedSolid, Color.TRANSPARENT);
-            int strokeColor = a.getColor(R.styleable.customButton_stroke, Color.TRANSPARENT);
-            radius = a.getDimensionPixelSize(R.styleable.customButton_roundButtonRadius, 0);
-            int leftTopRadius = a.getDimensionPixelSize(R.styleable.customButton_roundButtonLeftTopRadius, 0);
-            int leftBottomRadius = a.getDimensionPixelSize(R.styleable.customButton_roundButtonLeftBottomRadius, 0);
-            int rightTopRadius = a.getDimensionPixelSize(R.styleable.customButton_roundButtonRightTopRadius, 0);
-            int rightBottomRadius = a.getDimensionPixelSize(R.styleable.customButton_roundButtonRightBottomRadius, 0);
-            Drawable normalDrawable = a.getDrawable(R.styleable.customButton_normalDrawable);
-            Drawable pressedDrawable = a.getDrawable(R.styleable.customButton_pressedDrawable);
-            boolean isSelected = a.getBoolean(R.styleable.customButton_isSelected, false);
+            int normalSolid = a.getColor(R.styleable.customButton_normalSolidColor, Color.TRANSPARENT);
+            int pressedSolid = a.getColor(R.styleable.customButton_pressedSolidColor, Color.TRANSPARENT);
+            int strokeColor = a.getColor(R.styleable.customButton_strokeColor, Color.TRANSPARENT);
+            int leftTopRadius = a.getDimensionPixelSize(R.styleable.customButton_roundLeftTopRadius, 0);
+            int leftBottomRadius = a.getDimensionPixelSize(R.styleable.customButton_roundLeftBottomRadius, 0);
+            int rightTopRadius = a.getDimensionPixelSize(R.styleable.customButton_roundRightTopRadius, 0);
+            int rightBottomRadius = a.getDimensionPixelSize(R.styleable.customButton_roundRightBottomRadius, 0);
             int normalTextColor = a.getColor(R.styleable.customButton_normalTextColor, 0);
             int selectedTextColor = a.getColor(R.styleable.customButton_selectedTextColor, 0);
+            int normalStrokeColor = a.getColor(R.styleable.customButton_normalStrokeColor, Color.TRANSPARENT);
+            int pressedStokeColor = a.getColor(R.styleable.customButton_pressedStrokeColor, Color.TRANSPARENT);
+            boolean isSelected = a.getBoolean(R.styleable.customButton_isSelected, false);
+            boolean noLeftStroke = a.getBoolean(R.styleable.customButton_noLeftStroke,false);
+            boolean noRightStroke = a.getBoolean(R.styleable.customButton_noRightStroke,false);
+            boolean noTopStroke = a.getBoolean(R.styleable.customButton_noTopStroke,false);
+            boolean noBottomStroke = a.getBoolean(R.styleable.customButton_noBottomStroke,false);
+            Drawable normalDrawable = a.getDrawable(R.styleable.customButton_normalDrawable);
+            Drawable pressedDrawable = a.getDrawable(R.styleable.customButton_pressedDrawable);
             strokeWidth = a.getDimensionPixelSize(R.styleable.customButton_strokeWidth, 2);
-            int normalStrokeColor = a.getColor(R.styleable.customButton_normalStroke, Color.TRANSPARENT);
-            int pressedStokeColor = a.getColor(R.styleable.customButton_pressedStroke, Color.TRANSPARENT);
+            radius = a.getDimensionPixelSize(R.styleable.customButton_roundRadius, 0);
 
             a.recycle();
-
 
             selector = new StateListDrawable();
             if (normalDrawable != null && pressedDrawable != null) {
@@ -74,6 +81,8 @@ public class CustomButton extends Button {
                 selector.addState(new int[]{}, normalDrawable);
                 setBackgroundDrawable(selector);
             } else {
+
+                GradientDrawable pressedGD = new GradientDrawable();
                 GradientDrawable normalGD = new GradientDrawable();
                 normalGD.setColor(normalSolid);
 
@@ -81,18 +90,20 @@ public class CustomButton extends Button {
                 if (radius != 0) {
                     normalGD.setCornerRadius(radius);
                 } else if (leftTopRadius != 0 || leftBottomRadius != 0 || rightTopRadius != 0 || rightBottomRadius != 0) {
+                    normalGD.setCornerRadius(radius);
                     normalGD.setCornerRadii(new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius});
 
                 }
-
                 if (normalStrokeColor != Color.TRANSPARENT) {
                     normalGD.setStroke(strokeWidth, normalStrokeColor);
                 } else {
                     normalGD.setStroke(strokeWidth, strokeColor);
                 }
 
+                //normal drawable
+                LayerDrawable normalLayerDrawable = new LayerDrawable(new Drawable[]{normalGD});
+
                 if (pressedSolid != Color.TRANSPARENT || pressedStokeColor != Color.TRANSPARENT) {
-                    GradientDrawable pressedGD = new GradientDrawable();
                     pressedGD.setColor(pressedSolid);
                     if (radius != 0) {
                         pressedGD.setCornerRadius(radius);
@@ -106,30 +117,65 @@ public class CustomButton extends Button {
                         pressedGD.setStroke(strokeWidth, strokeColor);
                     }
 
+                    //设置选中状态下normalLayerDrawable边距
+                    LayerDrawable pressedLayerDrawable = new LayerDrawable(new Drawable[]{pressedGD});
+                    showStrokeBorder(pressedLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
 
                     if (isSelected) {
-                        selector.addState(new int[]{android.R.attr.state_selected}, pressedGD);
+                        selector.addState(new int[]{android.R.attr.state_selected}, pressedLayerDrawable);
                     } else {
-                        selector.addState(new int[]{android.R.attr.state_pressed}, pressedGD);
+                        selector.addState(new int[]{android.R.attr.state_pressed}, pressedLayerDrawable);
                     }
                 }
 
-
-                selector.addState(new int[]{}, normalGD);
+                //设置正常状态下drawable边距
+                showStrokeBorder(normalLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
+                //设置正常状态下的drawable
+                selector.addState(new int[]{}, normalLayerDrawable);
+                //设置selector
                 setBackgroundDrawable(selector);
-
 
                 if (normalTextColor != 0 && selectedTextColor != 0) {
                     //设置state_selected状态时，和正常状态时文字的颜色
-                    int[][] states = new int[3][1];
-                    states[0] = new int[]{android.R.attr.state_selected};
-                    states[1] = new int[]{android.R.attr.state_pressed};
-                    states[2] = new int[]{};
-                    ColorStateList textColorSelect = new ColorStateList(states, new int[]{selectedTextColor, selectedTextColor, normalTextColor});
+                    ColorStateList textColorSelect = null;
+                    if (isSelected) {
+                        int[][] states = new int[2][1];
+                        states[0] = new int[]{android.R.attr.state_selected};
+                        states[1] = new int[]{};
+                        textColorSelect = new ColorStateList(states, new int[]{selectedTextColor, normalTextColor});
+                    }else{
+                        int[][] states = new int[3][1];
+                        states[0] = new int[]{android.R.attr.state_selected};
+                        states[1] = new int[]{android.R.attr.state_pressed};
+                        states[2] = new int[]{};
+                        textColorSelect = new ColorStateList(states, new int[]{selectedTextColor,selectedTextColor,normalTextColor});
+                    }
+
                     setTextColor(textColorSelect);
                 }
             }
         }
+    }
+
+    /**
+     *
+     * 设置 button 四个边距
+     *
+     * @param layerDrawable    LayerDrawable
+     * @param index            下标
+     * @param left             左边距
+     * @param right            右边距
+     * @param top              上边距
+     * @param bottom           下边距
+     */
+    public void showStrokeBorder(LayerDrawable layerDrawable,int index ,boolean left,boolean right,boolean top,boolean bottom){
+
+        int leftWidth = left ? -strokeWidth : 0;
+        int rightWidth = right ? -strokeWidth : 0;
+        int topWidth = top ? -strokeWidth : 0;
+        int bottomWidth = bottom ? -strokeWidth: 0;
+
+        layerDrawable.setLayerInset(index,leftWidth,topWidth,rightWidth,bottomWidth);
     }
 
     /**

@@ -34,13 +34,103 @@
             android:padding="16dp"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                >
+
+                <com.button.library.CustomButton
+                    android:id="@+id/bt_font_size_small"
+                    style="@style/custom_button_font_setting_style"
+                    android:text="@string/font_small"
+                    app:roundLeftTopRadius="5dp"
+                    app:roundLeftBottomRadius="5dp"
+                    app:noRightStroke="true"
+                    />
+
+                <com.button.library.CustomButton
+                    android:id="@+id/bt_font_size_normal"
+                    style="@style/custom_button_font_setting_style"
+                    android:text="@string/font_normal"
+                    />
+
+                <com.button.library.CustomButton
+                    android:id="@+id/bt_font_size_big"
+                    style="@style/custom_button_font_setting_style"
+                    android:text="@string/font_big"
+                    app:noLeftStroke="true"
+                    />
+
+                <com.button.library.CustomButton
+                    android:id="@+id/bt_font_size_large"
+                    style="@style/custom_button_font_setting_style"
+                    android:text="@string/font_large"
+                    app:roundRightTopRadius="5dp"
+                    app:roundRightBottomRadius="5dp"
+                    app:noLeftStroke="true"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="XML 方式的实现"
+                android:gravity="center"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/rb_font_size_small"
+                    style="@style/xml_font_setting_style"
+                    android:text="@string/font_small"
+                    android:background="@drawable/selector_small"
+                    android:clickable="true"
+                    />
+
+                <TextView
+                    android:id="@+id/rb_font_size_normal"
+                    style="@style/xml_font_setting_style"
+                    android:text="@string/font_normal"
+                    android:background="@drawable/selector_normal"
+                    android:clickable="true"
+                    />
+
+                <TextView
+                    android:id="@+id/rb_font_size_big"
+                    style="@style/xml_font_setting_style"
+                    android:text="@string/font_big"
+                    android:background="@drawable/selector_big"
+                    android:clickable="true"
+                    />
+
+
+                <TextView
+                    android:id="@+id/rb_font_size_large"
+                    style="@style/xml_font_setting_style"
+                    android:text="@string/font_large"
+                    android:background="@drawable/selector_large"
+                    android:clickable="true"
+                    />
+            </LinearLayout>
+
+
             <com.button.library.CustomButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="圆角Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_3f51b5"
-                app:roundButtonRadius="@dimen/radius_10" />
+                app:normalSolidColor="@color/color_3f51b5"
+                app:roundRadius="@dimen/radius_10" />
 
             <com.button.library.CustomButton
                 android:layout_width="match_parent"
@@ -48,9 +138,9 @@
                 android:layout_marginTop="10dp"
                 android:text="左边45弧度圆角Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_3f51b5"
-                app:roundButtonLeftBottomRadius="@dimen/radius_45"
-                app:roundButtonLeftTopRadius="@dimen/radius_45" />
+                app:normalSolidColor="@color/color_3f51b5"
+                app:roundLeftBottomRadius="@dimen/radius_45"
+                app:roundLeftTopRadius="@dimen/radius_45" />
 
             <com.button.library.CustomButton
                 android:layout_width="match_parent"
@@ -58,8 +148,8 @@
                 android:layout_marginTop="10dp"
                 android:text="45弧度圆角Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_3f51b5"
-                app:roundButtonRadius="@dimen/radius_45" />
+                app:normalSolidColor="@color/color_3f51b5"
+                app:roundRadius="@dimen/radius_45" />
 
             <com.button.library.CustomButton
                 android:layout_width="match_parent"
@@ -67,9 +157,9 @@
                 android:layout_marginTop="10dp"
                 android:text="45圆角边框Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_3f51b5"
-                app:normalStroke="@color/color_ff4081"
-                app:roundButtonRadius="@dimen/radius_45"
+                app:normalSolidColor="@color/color_3f51b5"
+                app:normalStrokeColor="@color/color_ff4081"
+                app:roundRadius="@dimen/radius_45"
                 app:strokeWidth="2dp" />
 
             <com.button.library.CustomButton
@@ -78,11 +168,11 @@
                 android:layout_marginTop="10dp"
                 android:text="45弧度圆角按下效果变色边框Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_ff0000"
-                app:normalStroke="@color/color_303f9f"
-                app:pressedSolid="@color/color_00ff00"
-                app:pressedStroke="@color/color_ff4081"
-                app:roundButtonRadius="@dimen/radius_45"
+                app:normalSolidColor="@color/color_ff0000"
+                app:normalStrokeColor="@color/color_303f9f"
+                app:pressedSolidColor="@color/color_00ff00"
+                app:pressedStrokeColor="@color/color_ff4081"
+                app:roundRadius="@dimen/radius_45"
                 app:strokeWidth="2dp" />
 
             <com.button.library.CustomButton
@@ -91,9 +181,9 @@
                 android:layout_marginTop="10dp"
                 android:text="45弧度圆角按下效果Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_ff0000"
-                app:pressedSolid="@color/color_00ff00"
-                app:roundButtonRadius="@dimen/radius_45" />
+                app:normalSolidColor="@color/color_ff0000"
+                app:pressedSolidColor="@color/color_00ff00"
+                app:roundRadius="@dimen/radius_45" />
 
             <com.button.library.CustomButton
                 android:layout_width="match_parent"
@@ -101,10 +191,10 @@
                 android:layout_marginTop="10dp"
                 android:text="45弧度圆角按下效果文字变色Button"
                 android:textColor="@color/color_ffffff"
-                app:normalSolid="@color/color_ff0000"
+                app:normalSolidColor="@color/color_ff0000"
                 app:normalTextColor="@color/color_3f51b5"
-                app:pressedSolid="@color/color_00ff00"
-                app:roundButtonRadius="@dimen/radius_45"
+                app:pressedSolidColor="@color/color_00ff00"
+                app:roundRadius="@dimen/radius_45"
                 app:selectedTextColor="@color/color_ffffff" />
 
             <com.button.library.CustomButton
