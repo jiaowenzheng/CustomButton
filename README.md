@@ -4,7 +4,7 @@
 
 ## 效果
 
-<img src="https://github.com/jiaowenzheng/CustomButton/raw/master/pic.png" />  
+<img src="https://github.com/jiaowenzheng/CustomButton/raw/master/pic.png" width="400" height="800"/>  
 
 <br/>
 
