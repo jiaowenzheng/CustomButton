@@ -1,7 +1,7 @@
 package com.jiao.button;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.button.library.CustomButton;
@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CustomButton mNormalButton;
     private CustomButton mBigButton;
     private CustomButton mLargeButton;
+
 
 
     @Override

@@ -9,10 +9,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.Button;
-
-import static android.R.attr.left;
 
 
 /**
@@ -119,7 +116,7 @@ public class CustomButton extends Button {
 
                     //设置选中状态下normalLayerDrawable边距
                     LayerDrawable pressedLayerDrawable = new LayerDrawable(new Drawable[]{pressedGD});
-                    showStrokeBorder(pressedLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
+                    setStrokeMargin(pressedLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
 
                     if (isSelected) {
                         selector.addState(new int[]{android.R.attr.state_selected}, pressedLayerDrawable);
@@ -129,7 +126,7 @@ public class CustomButton extends Button {
                 }
 
                 //设置正常状态下drawable边距
-                showStrokeBorder(normalLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
+                setStrokeMargin(normalLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
                 //设置正常状态下的drawable
                 selector.addState(new int[]{}, normalLayerDrawable);
                 //设置selector
@@ -138,7 +135,7 @@ public class CustomButton extends Button {
                 if (normalTextColor != 0 && selectedTextColor != 0) {
                     //设置state_selected状态时，和正常状态时文字的颜色
                     ColorStateList textColorSelect = null;
-                    if (isSelected) {
+                    if (isSelected) { //是否可以选中
                         int[][] states = new int[2][1];
                         states[0] = new int[]{android.R.attr.state_selected};
                         states[1] = new int[]{};
@@ -168,14 +165,14 @@ public class CustomButton extends Button {
      * @param top              上边距
      * @param bottom           下边距
      */
-    public void showStrokeBorder(LayerDrawable layerDrawable,int index ,boolean left,boolean right,boolean top,boolean bottom){
+    public void setStrokeMargin(LayerDrawable layerDrawable, int index , boolean left, boolean right, boolean top, boolean bottom){
 
-        int leftWidth = left ? -strokeWidth : 0;
-        int rightWidth = right ? -strokeWidth : 0;
-        int topWidth = top ? -strokeWidth : 0;
-        int bottomWidth = bottom ? -strokeWidth: 0;
+        int leftMargin = left ? -strokeWidth : 0;
+        int rightMargin = right ? -strokeWidth : 0;
+        int topMargin = top ? -strokeWidth : 0;
+        int bottomMargin = bottom ? -strokeWidth: 0;
 
-        layerDrawable.setLayerInset(index,leftWidth,topWidth,rightWidth,bottomWidth);
+        layerDrawable.setLayerInset(index,leftMargin,topMargin,rightMargin,bottomMargin);
     }
 
     /**
