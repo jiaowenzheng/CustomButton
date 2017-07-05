@@ -11,6 +11,9 @@ import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.widget.Button;
 
+import static com.button.library.R.attr.isSelected;
+import static com.button.library.R.attr.normalStrokeColor;
+
 
 /**
  * Button(圆角Button带点击效果,正常Button带点击效果)
@@ -53,7 +56,7 @@ public class CustomButton extends Button {
             int normalTextColor = a.getColor(R.styleable.customButton_normalTextColor, 0);
             int selectedTextColor = a.getColor(R.styleable.customButton_selectedTextColor, 0);
             int normalStrokeColor = a.getColor(R.styleable.customButton_normalStrokeColor, Color.TRANSPARENT);
-            int pressedStokeColor = a.getColor(R.styleable.customButton_pressedStrokeColor, Color.TRANSPARENT);
+            int pressedStrokeColor = a.getColor(R.styleable.customButton_pressedStrokeColor, Color.TRANSPARENT);
             boolean isSelected = a.getBoolean(R.styleable.customButton_isSelected, false);
             boolean noLeftStroke = a.getBoolean(R.styleable.customButton_noLeftStroke,false);
             boolean noRightStroke = a.getBoolean(R.styleable.customButton_noRightStroke,false);
@@ -79,56 +82,16 @@ public class CustomButton extends Button {
                 setBackgroundDrawable(selector);
             } else {
 
-                GradientDrawable pressedGD = new GradientDrawable();
-                GradientDrawable normalGD = new GradientDrawable();
-                normalGD.setColor(normalSolid);
+                //先设置按下状态，再设置正常状态，否则失效.
+                //设置按下状态drawable 先设置
+                setPressedState(leftTopRadius,leftBottomRadius,rightBottomRadius,rightTopRadius,
+                        strokeColor,pressedStrokeColor,pressedSolid,noLeftStroke,noRightStroke,
+                        noTopStroke,noBottomStroke,isSelected);
 
+                //设置正常状态drawable
+                setNormalState(leftTopRadius,leftBottomRadius,rightBottomRadius,rightTopRadius,
+                        strokeColor,normalStrokeColor,normalSolid,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
 
-                if (radius != 0) {
-                    normalGD.setCornerRadius(radius);
-                } else if (leftTopRadius != 0 || leftBottomRadius != 0 || rightTopRadius != 0 || rightBottomRadius != 0) {
-                    normalGD.setCornerRadius(radius);
-                    normalGD.setCornerRadii(new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius});
-
-                }
-                if (normalStrokeColor != Color.TRANSPARENT) {
-                    normalGD.setStroke(strokeWidth, normalStrokeColor);
-                } else {
-                    normalGD.setStroke(strokeWidth, strokeColor);
-                }
-
-                //normal drawable
-                LayerDrawable normalLayerDrawable = new LayerDrawable(new Drawable[]{normalGD});
-
-                if (pressedSolid != Color.TRANSPARENT || pressedStokeColor != Color.TRANSPARENT) {
-                    pressedGD.setColor(pressedSolid);
-                    if (radius != 0) {
-                        pressedGD.setCornerRadius(radius);
-                    } else if (leftTopRadius != 0 || leftBottomRadius != 0 || rightTopRadius != 0 || rightBottomRadius != 0) {
-                        pressedGD.setCornerRadii(new float[]{leftTopRadius, leftTopRadius, rightTopRadius, rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius});
-                    }
-
-                    if (pressedStokeColor != Color.TRANSPARENT) {
-                        pressedGD.setStroke(strokeWidth, pressedStokeColor);
-                    } else {
-                        pressedGD.setStroke(strokeWidth, strokeColor);
-                    }
-
-                    //设置选中状态下normalLayerDrawable边距
-                    LayerDrawable pressedLayerDrawable = new LayerDrawable(new Drawable[]{pressedGD});
-                    setStrokeMargin(pressedLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
-
-                    if (isSelected) {
-                        selector.addState(new int[]{android.R.attr.state_selected}, pressedLayerDrawable);
-                    } else {
-                        selector.addState(new int[]{android.R.attr.state_pressed}, pressedLayerDrawable);
-                    }
-                }
-
-                //设置正常状态下drawable边距
-                setStrokeMargin(normalLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
-                //设置正常状态下的drawable
-                selector.addState(new int[]{}, normalLayerDrawable);
                 //设置selector
                 setBackgroundDrawable(selector);
 
@@ -154,6 +117,121 @@ public class CustomButton extends Button {
         }
     }
 
+
+    /**
+     *
+     * 设置正常状态下drawable
+     *
+     * @param leftTopRadius            左上角角度
+     * @param leftBottomRadius         左下角角度
+     * @param rightBottomRadius        右下角角度
+     * @param rightTopRadius           右上角角度
+     * @param strokeColor              描边颜色
+     * @param normalStrokeColor        正常状态下描边颜色
+     * @param normalSolid              正常状态下填充颜色
+     * @param noLeftStroke             无左描边
+     * @param noRightStroke            无右描边
+     * @param noTopStroke              无上描边
+     * @param noBottomStroke           无底描边
+     */
+    private void setNormalState(int leftTopRadius,int leftBottomRadius, int rightBottomRadius,int rightTopRadius,
+                               int strokeColor,int normalStrokeColor,int normalSolid,boolean noLeftStroke,
+                               boolean noRightStroke,boolean noTopStroke,boolean noBottomStroke){
+
+        GradientDrawable normalGD = new GradientDrawable();
+        //设置正常状态下填充色
+        normalGD.setColor(normalSolid);
+        //设置圆角
+        setRadius(normalGD,leftTopRadius,leftBottomRadius,rightBottomRadius,rightTopRadius);
+        //设置描边与描边颜色
+        setStrokeWidthWithColor(normalGD,strokeColor,normalStrokeColor);
+        //normal drawable
+        LayerDrawable normalLayerDrawable = new LayerDrawable(new Drawable[]{normalGD});
+        //设置正常状态下描边边距
+        setStrokeMargin(normalLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
+        //设置正常状态下的drawable
+        selector.addState(new int[]{}, normalLayerDrawable);
+    }
+
+    /**
+     * 设置按下状态drawable
+     *
+     * @param leftTopRadius            左上角角度
+     * @param leftBottomRadius         左下角角度
+     * @param rightBottomRadius        右下角角度
+     * @param rightTopRadius           右上角角度
+     * @param strokeColor              描边颜色
+     * @param pressedStokeColor        按下状太描边颜色
+     * @param pressedSolid             按下状态填充色
+     * @param noLeftStroke             无左描边
+     * @param noRightStroke            无右描边
+     * @param noTopStroke              无上描边
+     * @param noBottomStroke           无底描边
+     * @param isSelected               是否可以选择状态
+     */
+    private void setPressedState(int leftTopRadius,int leftBottomRadius,int rightBottomRadius,int rightTopRadius,
+                                int strokeColor,int pressedStokeColor,int pressedSolid,boolean noLeftStroke,
+                                boolean noRightStroke,boolean noTopStroke,boolean noBottomStroke,boolean isSelected){
+
+        GradientDrawable pressedGD = new GradientDrawable();
+
+        if (pressedSolid != Color.TRANSPARENT || pressedStokeColor != Color.TRANSPARENT) {
+            //设置按下填充色
+            pressedGD.setColor(pressedSolid);
+            //设置圆角
+            setRadius(pressedGD,leftTopRadius,leftBottomRadius,rightBottomRadius,rightTopRadius);
+            //设置描边与描边颜色
+            setStrokeWidthWithColor(pressedGD,strokeColor,pressedStokeColor);
+            //设置选中状态下描边边距
+            LayerDrawable pressedLayerDrawable = new LayerDrawable(new Drawable[]{pressedGD});
+            setStrokeMargin(pressedLayerDrawable,0,noLeftStroke,noRightStroke,noTopStroke,noBottomStroke);
+            //设置按下状态
+            if (isSelected) {
+                selector.addState(new int[]{android.R.attr.state_selected}, pressedLayerDrawable);
+            } else {
+                selector.addState(new int[]{android.R.attr.state_pressed}, pressedLayerDrawable);
+            }
+        }
+    }
+
+    /**
+     *
+     * 设置角度
+     *
+     * @param drawable
+     * @param leftTopRadius
+     * @param leftBottomRadius
+     * @param rightBottomRadius
+     * @param rightTopRadius
+     */
+    private void setRadius(GradientDrawable drawable,int leftTopRadius,int leftBottomRadius,
+                          int rightBottomRadius,int rightTopRadius){
+        if (radius != 0) {
+            drawable.setCornerRadius(radius);
+        } else if (leftTopRadius != 0 || leftBottomRadius != 0 || rightTopRadius != 0 || rightBottomRadius != 0) {
+            drawable.setCornerRadii(new float[]{leftTopRadius, leftTopRadius, rightTopRadius,
+                    rightTopRadius, rightBottomRadius, rightBottomRadius, leftBottomRadius, leftBottomRadius});
+        }
+
+    }
+
+    /**
+     *
+     * 设置边距
+     *
+     * @param drawable
+     * @param strokeColor
+     * @param stateStokeColor
+     */
+    private void setStrokeWidthWithColor(GradientDrawable drawable,int strokeColor,int stateStokeColor){
+        if (stateStokeColor != Color.TRANSPARENT) {
+            drawable.setStroke(strokeWidth, stateStokeColor);
+        } else {
+            drawable.setStroke(strokeWidth, strokeColor);
+        }
+    }
+
+
     /**
      *
      * 设置 button 四个边距
@@ -165,7 +243,7 @@ public class CustomButton extends Button {
      * @param top              上边距
      * @param bottom           下边距
      */
-    public void setStrokeMargin(LayerDrawable layerDrawable, int index , boolean left, boolean right, boolean top, boolean bottom){
+    private void setStrokeMargin(LayerDrawable layerDrawable, int index , boolean left, boolean right, boolean top, boolean bottom){
 
         int leftMargin = left ? -strokeWidth : 0;
         int rightMargin = right ? -strokeWidth : 0;
