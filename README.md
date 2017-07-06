@@ -35,7 +35,7 @@
         noLeftStroke                                   无左描边线
         noRightStroke                                  无右描边线
         noTopStroke                                    无上描边线
-        noBottomStroke                                 无下搭边线
+        noBottomStroke                                 无下描边线
         
         
 ## 示例
